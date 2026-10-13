@@ -1,7 +1,7 @@
 name: 'HuskChat'
 version: '${version}'
 description: '${description}'
-author: 'William278'
+author: 'William278, Flugobjekt'
 main: 'net.william278.huskchat.BungeeHuskChat'
 softDepends:
   - 'LuckPerms'

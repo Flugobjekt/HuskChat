@@ -73,6 +73,8 @@ allprojects {
         maven { url = 'https://repo.wea-ondara.net/repository/public/' }
         maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
         maven { url = 'https://jitpack.io' }
+        maven { url = 'https://repo.spicord.org/' }
+        maven { url = 'https://repo.papermc.io/repository/maven-public/' }
         maven { url = 'https://mvn-repo.arim.space/lesser-gpl3/' }
     }
 
@@ -189,7 +191,7 @@ subprojects {
     clean.delete "$rootDir/target"
 }
 
-logger.lifecycle("Building HuskChat ${version} by William278")
+logger.lifecycle("Building HuskChat ${version} by William278 & Flugobjekt")
 
 @SuppressWarnings('GrMethodMayBeStatic')
 def versionMetadata() {

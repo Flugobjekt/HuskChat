@@ -1,4 +1,4 @@
-> 🚨 **HuskChat has been discontinued** 🚨 and is no longer actively maintained. It may cease to function with newer versions of Spigot/Paper/Velocity/Waterfall. We no longer provide support for it. Thank you for your understanding.
+> ℹ️ **HuskChat 26.x Fork** &mdash; Updated for Minecraft 26.3 compatibility.
 
 <!--suppress ALL -->
 <p align="center">

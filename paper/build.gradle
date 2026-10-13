@@ -31,7 +31,7 @@ shadowJar {
 
 tasks {
     runServer {
-        minecraftVersion('1.20.4')
+        minecraftVersion('26.3')
 
         downloadPlugins {
             url("https://download.luckperms.net/1526/bukkit/loader/LuckPerms-Bukkit-5.4.113.jar")

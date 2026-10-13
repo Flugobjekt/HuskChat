@@ -1,10 +1,9 @@
 name: 'HuskChat'
 description: '${description}'
-author: 'William278'
-website: 'https://william278.net/'
+author: 'William278, Flugobjekt'
 main: 'net.william278.huskchat.PaperHuskChat'
 version: '${version}'
-api-version: '1.19'
+api-version: '26.3'
 folia-supported: true
 dependencies:
   server:
