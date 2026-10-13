@@ -28,13 +28,27 @@ import java.util.concurrent.CompletableFuture;
 
 public interface BukkitEventProvider extends EventProvider {
 
+    default void runSync(@NotNull Runnable runnable) {
+        if (getPlugin().getMorePaperLib() != null) {
+            if (getPlugin().getMorePaperLib().scheduling().isOnGlobalRegionThread()) {
+                runnable.run();
+            } else {
+                getPlugin().getMorePaperLib().scheduling().globalRegionalScheduler().run(runnable);
+            }
+        } else if (getPlugin().getServer().isPrimaryThread()) {
+            runnable.run();
+        } else {
+            getPlugin().getServer().getScheduler().runTask(getPlugin(), runnable);
+        }
+    }
+
     @Override
     default CompletableFuture<ChatMessageEvent> fireChatMessageEvent(@NotNull OnlineUser player,
                                                                     @NotNull String message,
                                                                     @NotNull String channelId) {
         final CompletableFuture<ChatMessageEvent> completableFuture = new CompletableFuture<>();
         final BukkitChatMessageEvent event = new BukkitChatMessageEvent(player, message, channelId);
-        getPlugin().getServer().getScheduler().runTask(getPlugin(), () -> {
+        runSync(() -> {
             getPlugin().getServer().getPluginManager().callEvent(event);
             completableFuture.complete(event);
         });
@@ -47,7 +61,7 @@ public interface BukkitEventProvider extends EventProvider {
                                                                           @NotNull String message) {
         final CompletableFuture<PrivateMessageEvent> completableFuture = new CompletableFuture<>();
         final BukkitPrivateMessageEvent event = new BukkitPrivateMessageEvent(sender, receivers, message);
-        getPlugin().getServer().getScheduler().runTask(getPlugin(), () -> {
+        runSync(() -> {
             getPlugin().getServer().getPluginManager().callEvent(event);
             completableFuture.complete(event);
         });
@@ -59,7 +73,7 @@ public interface BukkitEventProvider extends EventProvider {
                                                                               @NotNull String message) {
         final CompletableFuture<BroadcastMessageEvent> completableFuture = new CompletableFuture<>();
         final BukkitBroadcastMessageEvent event = new BukkitBroadcastMessageEvent(sender, message);
-        getPlugin().getServer().getScheduler().runTask(getPlugin(), () -> {
+        runSync(() -> {
             getPlugin().getServer().getPluginManager().callEvent(event);
             completableFuture.complete(event);
         });
