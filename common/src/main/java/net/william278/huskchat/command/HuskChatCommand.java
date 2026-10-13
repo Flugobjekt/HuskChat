@@ -46,8 +46,9 @@ public class HuskChatCommand extends CommandBase {
                 .title(Component.text("HuskChat"))
                 .description(Component.text(plugin.getPluginDescription()))
                 .version(plugin.getVersion())
-                .credits("Author",
-                        AboutMenu.Credit.of("William278").description("Click to visit website").url("https://william278.net"))
+                .credits("Authors",
+                        AboutMenu.Credit.of("William278").description("Click to visit website").url("https://william278.net"),
+                        AboutMenu.Credit.of("Flugobjekt"))
                 .credits("Contributors",
                         AboutMenu.Credit.of("TrueWinter").description("Code"),
                         AboutMenu.Credit.of("Ironboundred").description("Code"))

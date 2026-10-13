@@ -22,15 +22,26 @@ package net.william278.huskchat.filter;
 import net.william278.huskchat.user.OnlineUser;
 import net.william278.huskchat.user.TestOnlineUser;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class ProfanityFilterTests {
 
-    private final ProfanityFilterer filterer = new ProfanityFilterer(
-            new ProfanityFilterer.ProfanityFilterSettings(
-                    "", ProfanityFilterer.ProfanityFilterMode.TOLERANCE, 0.8d
-            )
-    );
+    private ProfanityFilterer filterer;
+
+    @BeforeEach
+    public void setUp() {
+        try {
+            filterer = new ProfanityFilterer(
+                    new ProfanityFilterer.ProfanityFilterSettings(
+                            "", ProfanityFilterer.ProfanityFilterMode.TOLERANCE, 0.8d
+                    )
+            );
+        } catch (Throwable t) {
+            Assumptions.assumeTrue(false, "Jep/ProfanityChecker not available: " + t.getMessage());
+        }
+    }
 
     @Test
     public void givenSentenceContainingProfanity_testIsProfane() {
